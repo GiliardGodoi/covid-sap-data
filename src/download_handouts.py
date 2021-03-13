@@ -22,6 +22,9 @@ regex = re.compile('(\d{2})\/(\d{2})\/(\d{4})')
 
 output_folder = os.path.join('data', 'boletins')
 
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+
 for link in tqdm(links):
     result = regex.findall(link['title'])
     url = link['href']
