@@ -130,6 +130,8 @@ dmypy.json
 
 # ignore projects folder
 *.png
+*.jpeg
+*.jpg
 *.pdf
 /data/html
 .vscode
