@@ -13,15 +13,15 @@ Quer contribuir? *Fork, code and pull*. Ou entre em contato e saiba como.
 
 ## Evolução dos casos ativos
 
-![alt text "Não conseguiu visualizar? Vá para a pasta  data\charts"](data\charts\03-evolucao-casos-ativos.png)
+![alt text "Não conseguiu visualizar? Vá para a pasta  data\charts"](data/charts/03-evolucao-casos-ativos.png)
 
 ## Número de óbitos por mês
 
-![alt text "Não conseguiu visualizar? Vá para a pasta  data\charts"](data\charts\09-evolucao-obitos-por-mes.png)
+![alt text "Não conseguiu visualizar? Vá para a pasta  data\charts"](data/charts/09-evolucao-obitos-por-mes.png)
 
 ## Relação casos confirmados e recuperados
 
-![alt text "Não conseguiu visualizar? Vá para a pasta  data\charts"](data\charts\05-relacao-confirmados-recuperados.png)
+![alt text "Não conseguiu visualizar? Vá para a pasta  data\charts"](data/charts/05-relacao-confirmados-recuperados.png)
 
 ## Referências
 
