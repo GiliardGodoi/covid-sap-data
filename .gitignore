@@ -129,6 +129,9 @@ dmypy.json
 .pyre/
 
 # ignore projects folder
-/data/boletins
+*.png
+*.jpeg
+*.jpg
+*.pdf
 /data/html
 .vscode

@@ -55,14 +55,15 @@ _ = ax.set_title("SAP - COVID-19 - Relação entre casos ativos e em investivaç
 
 ax.xaxis.grid(False)
 sns.despine(left=True)
-plt.savefig(path.join(outputfolder, '02-casos-ativos-em-investigacao.png'))
+plt.savefig(path.join(outputfolder, '02-casos-ativos-e-investigacao.png'))
 
-
-ax = sns.lineplot(data=frame[['ATIVOS']])
+#%%
+plt.figure()
+ax = sns.lineplot(data=frame[['ATIVOS']], legend=False)
 _ = ax.set_title("SAP COVID-19 - Evolução dos casos ativos")
 
 ax.xaxis.grid()
-ax.set_ylim([-10, 250])
+# ax.set_ylim([-10, 300])
 sns.despine(left=True)
 plt.savefig(path.join(outputfolder, '03-evolucao-casos-ativos.png'))
 
@@ -70,14 +71,15 @@ plt.savefig(path.join(outputfolder, '03-evolucao-casos-ativos.png'))
 # %%
 plt.figure()
 ax = sns.lineplot(data=frame[['HOSPITAL']],
-             palette="tab10"
+             palette="tab10",
+             legend=False
             )
 _ = ax.set_title("SAP COVID-19 - Evolução dos casos hospitalizados")
 
 # ax.set_ylim([-10, 250])
 ax.xaxis.grid()
 sns.despine(left=True)
-plt.savefig(path.join(outputfolder, '03-evolucao-hospitalizados.png'))
+plt.savefig(path.join(outputfolder, '04-evolucao-hospitalizados.png'))
 
 
 
@@ -89,7 +91,7 @@ ax = sns.lineplot(data=frame[['CONFIRMADOS','RECUPERADOS']],
 _ = ax.set_title("Santo Antônio da Platina - COVID-19")
 ax.xaxis.grid()
 sns.despine(left=True)
-plt.savefig(path.join(outputfolder, '04-relacao-confirmados-recuperados.png'))
+plt.savefig(path.join(outputfolder, '05-relacao-confirmados-recuperados.png'))
 
 # %%
 plt.figure()
@@ -97,10 +99,10 @@ ax = sns.lineplot(data=frame[['ATIVOS','EM INVESTIGACAO']],
              palette="tab10"
             )
 _ = ax.set_title("Santo Antônio da Platina - COVID-19")
-ax.set_ylim([-10, 300])
+# ax.set_ylim([-10, 300])
 ax.xaxis.grid()
 sns.despine(left=True)
-plt.savefig(path.join(outputfolder, '05-relacao-ativos-investigacao.png'))
+plt.savefig(path.join(outputfolder, '06-relacao-ativos-investigacao.png'))
 
 # %%
 plt.figure()
@@ -114,17 +116,18 @@ ax = frame['ATIVOS'].rolling(dias).mean().plot()
 _ = ax.set_title(f"SAP - Covid-19 - Média Móvel {dias} dias")
 ax.xaxis.grid()
 sns.despine(left=True)
-plt.savefig(path.join(outputfolder, '06-media-movel.png'))
+plt.savefig(path.join(outputfolder, '07-media-movel.png'))
 
 
 # %%
-plt.figure()
+
 ax = sns.relplot(kind="line", data=frame['OBITOS'], height=5, aspect=2)
 
 # ax.set(yticks=range(4,20))
-
+sns.despine(left=True)
 _ = ax.set(title="Evolução da quantidade de óbitos")
-plt.savefig(path.join(outputfolder, '07-evolucao-obitos.png'))
+plt.tight_layout()
+plt.savefig(path.join(outputfolder, '08-evolucao-obitos.png'))
 
 
 # %%
@@ -168,5 +171,4 @@ ax.set_xlabel("Meses")
 ax.tick_params(axis="x", rotation=0)
 sns.despine(left=True)
 
-plt.savefig(path.join(outputfolder, '08-evolucao-obitos-por-mes.png'))
-
+plt.savefig(path.join(outputfolder, '09-evolucao-obitos-por-mes.png'))

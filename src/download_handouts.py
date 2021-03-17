@@ -33,7 +33,7 @@ for link in tqdm(links):
 
     if len(result) == 1 and len(result[0]) == 3:
         day, month, year = result[0]
-        filename = os.path.join(output_folder, f'boletim-saude-sap-{day}-{month}-{year}{extension}')
+        filename = os.path.join(output_folder, f'boletim-sap-{year}-{month}-{day}{extension}')
     else:
         # print(link['title'])
         index = link['href'].rfind('/') + 1
