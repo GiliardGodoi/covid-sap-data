@@ -63,7 +63,7 @@ ax = sns.lineplot(data=frame[['ATIVOS']], legend=False)
 _ = ax.set_title("SAP COVID-19 - Evolução dos casos ativos")
 
 ax.xaxis.grid()
-ax.set_ylim([-10, 300])
+# ax.set_ylim([-10, 300])
 sns.despine(left=True)
 plt.savefig(path.join(outputfolder, '03-evolucao-casos-ativos.png'))
 
@@ -120,12 +120,13 @@ plt.savefig(path.join(outputfolder, '07-media-movel.png'))
 
 
 # %%
-plt.figure()
+
 ax = sns.relplot(kind="line", data=frame['OBITOS'], height=5, aspect=2)
 
 # ax.set(yticks=range(4,20))
-
+sns.despine(left=True)
 _ = ax.set(title="Evolução da quantidade de óbitos")
+plt.tight_layout()
 plt.savefig(path.join(outputfolder, '08-evolucao-obitos.png'))
 
 
