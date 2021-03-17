@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # ignore projects folder
-*.png
+# *.png
 *.jpeg
 *.jpg
 *.pdf
