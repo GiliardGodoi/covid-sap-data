@@ -1,11 +1,13 @@
 #%%
-import os
-from os import path
-from datetime import datetime
-import pandas as pd
 
-from matplotlib import pyplot as plt
+from datetime import datetime
+from os import path
+
+import pandas as pd
 import seaborn as sns
+from matplotlib import dates as mdates
+from matplotlib import pyplot as plt
+from matplotlib.ticker import MaxNLocator
 
 plt.rcParams["figure.figsize"] = (10, 5)
 params = {
@@ -40,6 +42,8 @@ ax = sns.lineplot(data=frame[['EM INVESTIGACAO', 'CONFIRMADOS']],
             )
 
 _ = ax.set_title("SAP - COVID-19 - Evolução dos casos")
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
 ax.xaxis.grid(False)
 sns.despine(left=True)
 plt.savefig(path.join(outputfolder, '01-evolucao-casos.png'))
@@ -52,7 +56,8 @@ ax = sns.lineplot(data=frame[['EM INVESTIGACAO', 'ATIVOS']],
             )
 
 _ = ax.set_title("SAP - COVID-19 - Relação entre casos ativos e em investivação")
-
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
 ax.xaxis.grid(False)
 sns.despine(left=True)
 plt.savefig(path.join(outputfolder, '02-casos-ativos-e-investigacao.png'))
@@ -61,7 +66,8 @@ plt.savefig(path.join(outputfolder, '02-casos-ativos-e-investigacao.png'))
 plt.figure()
 ax = sns.lineplot(data=frame[['ATIVOS']], legend=False)
 _ = ax.set_title("SAP COVID-19 - Evolução dos casos ativos")
-
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
 ax.xaxis.grid()
 # ax.set_ylim([-10, 300])
 sns.despine(left=True)
@@ -75,7 +81,8 @@ ax = sns.lineplot(data=frame[['HOSPITAL']],
              legend=False
             )
 _ = ax.set_title("SAP COVID-19 - Evolução dos casos hospitalizados")
-
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
 # ax.set_ylim([-10, 250])
 ax.xaxis.grid()
 sns.despine(left=True)
@@ -88,6 +95,8 @@ plt.figure()
 ax = sns.lineplot(data=frame[['CONFIRMADOS','RECUPERADOS']],
              palette="tab10"
             )
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
 _ = ax.set_title("Santo Antônio da Platina - COVID-19")
 ax.xaxis.grid()
 sns.despine(left=True)
@@ -99,6 +108,8 @@ ax = sns.lineplot(data=frame[['ATIVOS','EM INVESTIGACAO']],
              palette="tab10"
             )
 _ = ax.set_title("Santo Antônio da Platina - COVID-19")
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
 # ax.set_ylim([-10, 300])
 ax.xaxis.grid()
 sns.despine(left=True)
@@ -111,9 +122,9 @@ dias = 7
 
 ax = frame['ATIVOS'].plot()
 ax = frame['ATIVOS'].rolling(dias).mean().plot()
-
-
 _ = ax.set_title(f"SAP - Covid-19 - Média Móvel {dias} dias")
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
 ax.xaxis.grid()
 sns.despine(left=True)
 plt.savefig(path.join(outputfolder, '07-media-movel.png'))
@@ -121,11 +132,13 @@ plt.savefig(path.join(outputfolder, '07-media-movel.png'))
 
 # %%
 
-ax = sns.relplot(kind="line", data=frame['OBITOS'], height=5, aspect=2)
-
+fig = sns.relplot(kind="line", data=frame['OBITOS'], height=5, aspect=2)
+ax = fig.facet_axis(0,0)
+ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 # ax.set(yticks=range(4,20))
 sns.despine(left=True)
-_ = ax.set(title="Evolução da quantidade de óbitos")
+_ = fig.set(title="Evolução da quantidade de óbitos")
 plt.tight_layout()
 plt.savefig(path.join(outputfolder, '08-evolucao-obitos.png'))
 
@@ -166,6 +179,7 @@ labels = [formatter(label) for label in groupdeaths.index]
 ax = groupdeaths.plot(kind='bar', color='steelblue')
 
 ax.set(title='SAP COVID-19 - Total de mortes por mês')
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 ax.set_xticklabels(labels)
 ax.set_xlabel("Meses")
 ax.tick_params(axis="x", rotation=0)
