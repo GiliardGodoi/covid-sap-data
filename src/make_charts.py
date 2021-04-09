@@ -7,7 +7,8 @@ import pandas as pd
 import seaborn as sns
 from matplotlib import dates as mdates
 from matplotlib import pyplot as plt
-from matplotlib.ticker import MaxNLocator
+from matplotlib.ticker import MaxNLocator, MultipleLocator
+
 
 plt.rcParams["figure.figsize"] = (10, 5)
 params = {
@@ -34,6 +35,10 @@ frame = pd.read_excel(inputfile,
                    index_col="DATA",
                    parse_dates=['DATA'],
                    engine='openpyxl')
+
+frame['NOVOS_CASOS'] = frame['CONFIRMADOS'].diff(periods=1)
+frame['RECUPERADOS_DIA'] = frame['RECUPERADOS'].diff(periods=1)
+frame['DESCARTADOS_DIA'] = frame['DESCARTADOS'].diff(periods=1)
 
 #%%
 plt.figure()
@@ -179,10 +184,34 @@ labels = [formatter(label) for label in groupdeaths.index]
 ax = groupdeaths.plot(kind='bar', color='steelblue')
 
 ax.set(title='SAP COVID-19 - Total de mortes por mês')
+ax.xaxis.grid(False)
 ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 ax.set_xticklabels(labels)
 ax.set_xlabel("Meses")
 ax.tick_params(axis="x", rotation=0)
 sns.despine(left=True)
-
 plt.savefig(path.join(outputfolder, '09-evolucao-obitos-por-mes.png'))
+
+# %%
+
+df = frame.resample('W-MON').sum()
+
+df2 = df['2020-11':]
+
+loc = MultipleLocator(base=3.0)
+
+labels = [date.strftime("%d/%m %a") for date in df2.index]
+
+plt.figure(figsize=(15, 7))
+ax = plt.subplot()
+plt.bar(labels, df2['NOVOS_CASOS'], color='steelblue', label='Novos casos')
+plt.bar(labels, df2['RECUPERADOS_DIA'], color='orange', alpha=0.8, label='Recuperados por dia')
+ax.yaxis.grid(True)
+ax.xaxis.set_major_locator(loc)
+ax.xaxis.grid(False)
+ax.set(title="Evolução de casos e recuperação por semana")
+plt.legend()
+plt.xticks(rotation=40)
+sns.despine(left=True)
+
+plt.savefig(path.join(outputfolder, '10-relacao-novos-casos-recuperados-semanal.png'))

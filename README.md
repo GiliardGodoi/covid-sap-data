@@ -13,7 +13,11 @@ Quer contribuir? *Fork, code and pull*. Ou entre em contato e saiba como.
 
 ## Evolução dos casos ativos
 
-![alt text "Não conseguiu visualizar? Vá para a pasta  data\charts"](data/charts/03-evolucao-casos-ativos.png)
+![alt text "Não conseguiu visualizar? Vá para a pasta data\charts"](data/charts/03-evolucao-casos-ativos.png)
+
+## Relação entre novos casos e recuperados por semana
+
+![alt text "Não conseguiu visualizar? Vá para a pasta data\charts"](data/charts/10-relacao-novos-casos-recuperados-semanal.png)
 
 ## Número de óbitos por mês
 
