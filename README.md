@@ -13,7 +13,7 @@ Quer contribuir? *Fork, code and pull*. Ou entre em contato e saiba como.
 
 ## Evolução dos casos ativos e em investigação
 
-![alt text "Não conseguiu visualizar? Vá para a pasta data\charts"](data/charts/02-casos-ativos-e-investigacao.png)
+![alt text "Não conseguiu visualizar? Vá para a pasta data\charts"](data/charts/06-relacao-ativos-investigacao.png)
 
 ## Relação entre novos casos e recuperados por semana
 
