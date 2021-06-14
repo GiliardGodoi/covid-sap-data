@@ -41,42 +41,42 @@ frame['RECUPERADOS_DIA'] = frame['RECUPERADOS'].diff(periods=1)
 frame['DESCARTADOS_DIA'] = frame['DESCARTADOS'].diff(periods=1)
 
 #%%
-plt.figure()
-ax = sns.lineplot(data=frame[['EM INVESTIGACAO', 'CONFIRMADOS']],
-            palette="tab10"
-            )
+# plt.figure()
+# ax = sns.lineplot(data=frame[['EM INVESTIGACAO', 'CONFIRMADOS']],
+#             palette="tab10"
+#             )
 
-_ = ax.set_title("SAP - COVID-19 - Evolução dos casos")
-ax.yaxis.set_major_locator(MaxNLocator(integer=True))
-ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
-ax.xaxis.grid(False)
-sns.despine(left=True)
-plt.savefig(path.join(outputfolder, '01-evolucao-casos.png'))
+# _ = ax.set_title("SAP - COVID-19 - Evolução dos casos")
+# ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+# ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
+# ax.xaxis.grid(False)
+# sns.despine(left=True)
+# plt.savefig(path.join(outputfolder, '01-evolucao-casos.png'))
 
-
-#%%
-plt.figure()
-ax = sns.lineplot(data=frame[['EM INVESTIGACAO', 'ATIVOS']],
-            palette="tab10"
-            )
-
-_ = ax.set_title("SAP - COVID-19 - Relação entre casos ativos e em investivação")
-ax.yaxis.set_major_locator(MaxNLocator(integer=True))
-ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
-ax.xaxis.grid(False)
-sns.despine(left=True)
-plt.savefig(path.join(outputfolder, '02-casos-ativos-e-investigacao.png'))
 
 #%%
-plt.figure()
-ax = sns.lineplot(data=frame[['ATIVOS']], legend=False)
-_ = ax.set_title("SAP COVID-19 - Evolução dos casos ativos")
-ax.yaxis.set_major_locator(MaxNLocator(integer=True))
-ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
-ax.xaxis.grid()
-# ax.set_ylim([-10, 300])
-sns.despine(left=True)
-plt.savefig(path.join(outputfolder, '03-evolucao-casos-ativos.png'))
+# plt.figure()
+# ax = sns.lineplot(data=frame[['EM INVESTIGACAO', 'ATIVOS']],
+#             palette="tab10"
+#             )
+
+# _ = ax.set_title("SAP - COVID-19 - Relação entre casos ativos e em investivação")
+# ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+# ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
+# ax.xaxis.grid(False)
+# sns.despine(left=True)
+# plt.savefig(path.join(outputfolder, '02-casos-ativos-e-investigacao.png'))
+
+#%%
+# plt.figure()
+# ax = sns.lineplot(data=frame[['ATIVOS']], legend=False)
+# _ = ax.set_title("SAP COVID-19 - Evolução dos casos ativos")
+# ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+# ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
+# ax.xaxis.grid()
+# # ax.set_ylim([-10, 300])
+# sns.despine(left=True)
+# plt.savefig(path.join(outputfolder, '03-evolucao-casos-ativos.png'))
 
 
 # %%
