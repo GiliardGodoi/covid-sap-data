@@ -32,5 +32,6 @@ Quer contribuir? *Fork, code and pull*. Ou entre em contato e saiba como.
 [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/03.11-working-with-time-series.html), do cientista Jake VanderPlas.
 
 Veja também os projetos:
+
 - [COVID19-AutoReports](https://github.com/ramongss/COVID19-AutoReports) mantindo por [@ramongss](https://github.com/ramongss), e;
 - [Painel COVID-19](https://brasil.io/covid19/) mantido pela organização Brasil IO.
