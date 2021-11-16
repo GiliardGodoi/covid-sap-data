@@ -8,6 +8,7 @@ import seaborn as sns
 from matplotlib import dates as mdates
 from matplotlib import pyplot as plt
 from matplotlib.ticker import MaxNLocator, MultipleLocator
+import matplotlib.ticker as plticker
 
 
 plt.rcParams["figure.figsize"] = (10, 5)
@@ -195,24 +196,30 @@ plt.savefig(path.join(outputfolder, '09-evolucao-obitos-por-mes.png'))
 
 # %%
 
-df = frame.resample('W-MON').sum()
+df2 = frame.resample('W-MON').sum()['2020-11':]
 
-df2 = df['2020-11':]
+figure, (ax1, ax2) = plt.subplots(2, 1, figsize=(15, 7), sharex=False)
+ax1.set_title("Relação de novos casos e recuperados por dia")
 
-loc = MultipleLocator(base=3.0)
+loc = plticker.MultipleLocator(base=3.0)
+labels = [date.strftime("%d/%m") for date in df2.index]
 
-labels = [date.strftime("%d/%m %a") for date in df2.index]
+sns.barplot(x=labels,
+            y=df2['CONFIRMADOS_DIA'],
+            color='steelblue',
+            ax=ax1)
+ax1.xaxis.set_major_locator(loc)
+ax1.yaxis.grid(True)
+ax1.set_ylabel('Confirmados por dia')
 
-plt.figure(figsize=(15, 7))
-ax = plt.subplot()
-plt.bar(labels, df2['CONFIRMADOS_DIA'], color='steelblue', label='Novos casos')
-plt.bar(labels, df2['RECUPERADOS_DIA'], color='orange', alpha=0.8, label='Recuperados por dia')
-ax.yaxis.grid(True)
-ax.xaxis.set_major_locator(loc)
-ax.xaxis.grid(False)
-ax.set(title="Evolução de casos e recuperação por semana")
-plt.legend()
-plt.xticks(rotation=40)
+sns.barplot(x=labels,
+            y=df2['RECUPERADOS_DIA'],
+            color='orange',
+            ax=ax2)
+ax2.yaxis.grid(True)
+ax2.xaxis.set_major_locator(loc)
+ax2.set_ylabel("Recuperados por dia")
+
 sns.despine(left=True)
 
 plt.savefig(path.join(outputfolder, '10-relacao-novos-casos-recuperados-semanal.png'))
