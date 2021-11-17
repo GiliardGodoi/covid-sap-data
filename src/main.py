@@ -26,12 +26,16 @@ def cli():
                 default=Path('.', 'data', 'raw', 'BOLETIM_DIARIO_CORONAVIRUS_SAP.xlsx'),
                 help='open excel file')
 def excel(filename):
-    if not filename.exists():
+    if not os.path.exists(filename):
         raise FileNotFoundError(filename)
     os.startfile(filename)
 
 
 @cli.command()
+@click.option('--many',
+                is_flag=True,
+                default=False,
+                help='enter data by hand')
 def entry(many : bool):
 
 
