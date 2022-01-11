@@ -161,7 +161,8 @@ def chart09_evolucao_obitos_mes(frame, outputfolder=out, filename='09-evolucao-o
     def formatter(label):
         yearDict = {
             2020 : '20',
-            2021 : '21'
+            2021 : '21',
+            2022 : '22'
         }
         monthDict = {
             1:'Jan',
