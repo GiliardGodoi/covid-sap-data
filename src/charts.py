@@ -199,7 +199,7 @@ def chart10_novos_casos_recuperacoes_semanal(frame, outputfolder=out, filename='
     df2 = frame.resample('W-MON').sum()['2020-11':]
 
     figure, (ax1, ax2) = plt.subplots(2, 1, figsize=(15, 7), sharex=False)
-    ax1.set_title("Relação de novos casos e recuperados por dia")
+    ax1.set_title("Relação entre confirmados e recuperados por semana")
 
     loc = plticker.MultipleLocator(base=3.0)
     labels = [date.strftime("%d/%m") for date in df2.index]
@@ -210,7 +210,7 @@ def chart10_novos_casos_recuperacoes_semanal(frame, outputfolder=out, filename='
                 ax=ax1)
     ax1.xaxis.set_major_locator(loc)
     ax1.yaxis.grid(True)
-    ax1.set_ylabel('Confirmados por dia')
+    ax1.set_ylabel('Confirmados por semana')
 
     sns.barplot(x=labels,
                 y=df2['RECUPERADOS_DIA'],
@@ -218,7 +218,7 @@ def chart10_novos_casos_recuperacoes_semanal(frame, outputfolder=out, filename='
                 ax=ax2)
     ax2.yaxis.grid(True)
     ax2.xaxis.set_major_locator(loc)
-    ax2.set_ylabel("Recuperados por dia")
+    ax2.set_ylabel("Recuperados por semana")
 
     sns.despine(left=True)
 
