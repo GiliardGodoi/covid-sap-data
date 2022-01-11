@@ -198,7 +198,7 @@ def chart09_evolucao_obitos_mes(frame, outputfolder=out, filename='09-evolucao-o
 def chart10_novos_casos_recuperacoes_semanal(frame, outputfolder=out, filename='10-relacao-novos-casos-recuperados-semanal.png'):
     df2 = frame.resample('W-MON').sum()['2020-11':]
 
-    figure, (ax1, ax2) = plt.subplots(2, 1, figsize=(15, 7), sharex=False)
+    figure, (ax1, ax2) = plt.subplots(2, 1, figsize=(15, 7), sharey=True)
     ax1.set_title("Relação entre confirmados e recuperados por semana")
 
     loc = plticker.MultipleLocator(base=3.0)
