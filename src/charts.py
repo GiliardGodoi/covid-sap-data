@@ -226,6 +226,23 @@ def chart10_novos_casos_recuperacoes_semanal(frame, outputfolder=out, filename='
 
 # %%
 
+def chart11_taxa_testes_positivados(frame, outputfolder=out, filename='11-taxa-testes-positivados.png'):
+
+    df2 = frame['2020-11':].resample('W-MON').sum()
+    df2['test_positive_rate'] = (df2['CONFIRMADOS_DIA'] / df2['EXAMINADOS_DIA']) * 100
+
+    plt.figure(figsize=(14, 7))
+
+    sns.lineplot(x=df2.index,
+                y=df2['test_positive_rate'])
+    sns.scatterplot(x=df2.index,
+                y=df2['test_positive_rate'])
+    sns.despine(left=True)
+    plt.ylim((0, 100))
+    plt.title("Taxa de testes com resultado positivo")
+    plt.ylabel("Taxa de teste positivos (%)")
+    plt.savefig(path.join(outputfolder, filename))
+
 if __name__ == "__main__":
     frame = read_data(inputfile)
 
