@@ -27,6 +27,12 @@ Quer contribuir? *Fork, code and pull*. Ou entre em contato e saiba como.
 
 ![alt text "Não conseguiu visualizar? Vá para a pasta  data\charts"](data/charts/05-relacao-confirmados-recuperados.png)
 
+## Percentual de testes positivados
+
+![alt text "Não conseguiu visualizar? Vá para a pasta data\charts"](data/charts/11-taxa-testes-positivados.png)
+
+A última porcentagem informada no gráfico deve ser interpretada com cuidado, talvez como uma tendência, uma vez que a semana não está concluída, esse número pode sofrer alterações abruptas.
+
 ## Referências
 
 [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/03.11-working-with-time-series.html), do cientista Jake VanderPlas.
