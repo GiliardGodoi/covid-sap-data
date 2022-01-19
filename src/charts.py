@@ -115,7 +115,7 @@ def chart06_relacao_ativos_investigados(frame, outputfolder=out, filename='06-re
     ax = sns.lineplot(data=frame[['ATIVOS','EM INVESTIGACAO']],
                 palette="tab10"
                 )
-    _ = ax.set_title("Santo Antônio da Platina - COVID-19")
+    _ = ax.set_title("Casos ativos e em investigação relatados diariamente")
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
     # ax.set_ylim([-10, 300])
