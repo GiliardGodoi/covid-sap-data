@@ -153,8 +153,8 @@ def chart08_evolucao_obitos(frame, outputfolder=out, filename='08-evolucao-obito
 
 # %%
 def chart09_evolucao_obitos_mes(frame, outputfolder=out, filename='09-evolucao-obitos-por-mes.png'):
-    plt.figure()
-    deaths = frame['OBITOS_DIA']
+
+    deaths = frame['OBITOS_DIA']['2020-11':]
 
     groupdeaths = deaths.groupby([(deaths.index.year),(deaths.index.month)]).sum()
 
@@ -182,6 +182,7 @@ def chart09_evolucao_obitos_mes(frame, outputfolder=out, filename='09-evolucao-o
     # labels
     labels = [formatter(label) for label in groupdeaths.index]
 
+    plt.figure()
     ax = groupdeaths.plot(kind='bar', color='steelblue')
 
     ax.set(title='SAP COVID-19 - Total de mortes por mês')
