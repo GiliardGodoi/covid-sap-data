@@ -10,13 +10,11 @@ jobs:
     runs-on: ubunto-latest
     strategy:
       matrix:
-        python-version: "3.8"
+        python-version: ["3.8"]
     name: Plot charts
     steps:
       - uses: "actions/checkout@v2"
       - uses: "actions/setup-python@v2"
-        with:
-          python-version: "3.8"
       - name: install dependencies
         run: python -m pip install -r requirements.txt
       - name: Render charts
