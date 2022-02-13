@@ -1,26 +1,26 @@
-name: Plot charts
+# name: Plot charts
 
-on:
-  push:
-    branches: main
+# on:
+#   push:
+#     branches: main
 
 
-jobs:
-  build:
-    runs-on: ubunto-latest
-    strategy:
-      matrix:
-        python-version: ["3.8"]
-    name: Plot charts
-    steps:
-      - uses: "actions/checkout@v2"
-      - uses: "actions/setup-python@v2"
-      - name: install dependencies
-        run: python -m pip install -r requirements.txt
-      - name: Render charts
-        run: python auto.py
-      - name: Commit results
-        run: |
-          git add .
-          git commit -m 'automaticaly update charts'
-          git push origin
+# jobs:
+#   build:
+#     runs-on: ubunto-latest
+#     strategy:
+#       matrix:
+#         python-version: ["3.8"]
+#     name: Plot charts
+#     steps:
+#       - uses: "actions/checkout@v2"
+#       - uses: "actions/setup-python@v2"
+#       - name: install dependencies
+#         run: python -m pip install -r requirements.txt
+#       - name: Render charts
+#         run: python auto.py
+#       - name: Commit results
+#         run: |
+#           git add .
+#           git commit -m 'automaticaly update charts'
+#           git push origin
