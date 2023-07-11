@@ -1,7 +1,12 @@
 import re, os
+import logging
 import requests
 from tqdm import tqdm
 from bs4 import BeautifulSoup
+from pathlib import Path
+
+logging.basicConfig(filename='covid-sap-logger.log',
+                    format='%(asctime)d-%(levelname)s-%(message)s')
 
 url = "https://www.santoantoniodaplatina.pr.gov.br/index.php?sessao=b054603368ixb0&id=1412"
 
@@ -20,10 +25,10 @@ print(len(links))
 
 regex = re.compile('(\d{2})\/(\d{2})\/(\d{4})')
 
-output_folder = os.path.join('data', 'boletins')
+output_folder = Path('..', 'data', 'boletins')
 
-if not os.path.exists(output_folder):
-    os.makedirs(output_folder)
+if not output_folder.exists():
+    output_folder.mkdir()
 
 for link in tqdm(links):
     result = regex.findall(link['title'])
@@ -33,14 +38,17 @@ for link in tqdm(links):
 
     if len(result) == 1 and len(result[0]) == 3:
         day, month, year = result[0]
-        filename = os.path.join(output_folder, f'boletim-sap-{year}-{month}-{day}{extension}')
+        filename = Path(output_folder, f'boletim-sap-{year}-{month}-{day}{extension}')
     else:
         # print(link['title'])
         index = link['href'].rfind('/') + 1
-        filename = os.path.join(output_folder, link['href'][index:])
+        filename = Path(output_folder, link['href'][index:])
 
 
     response = requests.get(url)
     if response.status_code == requests.codes.ok:
+        logging.info(f'{url} : {response.status_code}')
         with open(filename, 'wb') as file:
             file.write(response.content)
+    else:
+        logging.error(f'{url} : {response.status_code}')
