@@ -8,11 +8,11 @@ from rich.traceback import install
 
 from .questioner import ask4date, ask4int, ask4YesOrNo, greeting
 
-from .charts import (chart05_relacao_confirmados_recuperados,
-                     chart06_relacao_ativos_investigados,
-                     chart09_evolucao_obitos_mes,
-                     chart10_novos_casos_recuperacoes_semanal,
-                     chart11_taxa_testes_positivados, read_data)
+from .viz import (lineplot_relacao_confirmados_recuperados,
+                     lineplot_relacao_ativos_investigados,
+                     barplot_evolucao_obitos_mes,
+                     barplot_novos_casos_recuperacoes_semanal,
+                     lineplot_taxa_testes_positivados, read_data)
 
 install()
 console = Console()
@@ -105,11 +105,11 @@ def draw(source):
         frame = read_data(source)
 
     with console.status("Plotando gráficos...", spinner='clock'):
-        chart06_relacao_ativos_investigados(frame, outputfolder=dest)
-        chart10_novos_casos_recuperacoes_semanal(frame, outputfolder=dest)
-        chart09_evolucao_obitos_mes(frame, outputfolder=dest)
-        chart05_relacao_confirmados_recuperados(frame, outputfolder=dest)
-        chart11_taxa_testes_positivados(frame, outputfolder=dest)
+        lineplot_relacao_ativos_investigados(frame, outputfolder=dest)
+        barplot_novos_casos_recuperacoes_semanal(frame, outputfolder=dest)
+        barplot_evolucao_obitos_mes(frame, outputfolder=dest)
+        lineplot_relacao_confirmados_recuperados(frame, outputfolder=dest)
+        lineplot_taxa_testes_positivados(frame, outputfolder=dest)
 
 if __name__ == "__main__":
     cli()

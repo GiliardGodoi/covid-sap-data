@@ -1,3 +1,8 @@
+'''
+The website where the original daily COVID-19 reports were published is no longer available.
+
+Even so, this code was kept for legacy reasons.
+'''
 import re, os
 import logging
 import requests
@@ -8,6 +13,7 @@ from pathlib import Path
 logging.basicConfig(filename='covid-sap-logger.log',
                     format='%(asctime)d-%(levelname)s-%(message)s')
 
+# This site is no longer available
 url = "https://www.santoantoniodaplatina.pr.gov.br/index.php?sessao=b054603368ixb0&id=1412"
 
 response = requests.get(url)
