@@ -6,7 +6,7 @@ import click
 from rich.console import Console
 from rich.traceback import install
 
-from .questioner import ask4date, ask4int, ask4YesOrNo, greeting
+from .manual_collector_cli import ask4date, ask4int, ask4YesOrNo, greeting
 
 from .viz import (lineplot_relacao_confirmados_recuperados,
                      lineplot_relacao_ativos_investigados,
