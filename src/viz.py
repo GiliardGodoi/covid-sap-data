@@ -38,7 +38,7 @@ def read_data(inputfile):
 
 
 #%%
-def chart01_evolucao_casos(frame, outputfolder=out, filename='01-evolucao-casos.png'):
+def lineplot_evolucao_casos(frame, outputfolder=out, filename='01-evolucao-casos.png'):
     plt.figure()
     ax = sns.lineplot(data=frame[['EM INVESTIGACAO', 'CONFIRMADOS']],
                 palette="tab10"
@@ -53,7 +53,7 @@ def chart01_evolucao_casos(frame, outputfolder=out, filename='01-evolucao-casos.
 
 
 #%%
-def chart02_casos_ativos_investigacao(frame, outputfolder=out, filename='02-casos-ativos-e-investigacao.png'):
+def lineplot_casos_ativos_investigacao(frame, outputfolder=out, filename='02-casos-ativos-e-investigacao.png'):
     plt.figure()
     ax = sns.lineplot(data=frame[['EM INVESTIGACAO', 'ATIVOS']],
                 palette="tab10"
@@ -67,7 +67,7 @@ def chart02_casos_ativos_investigacao(frame, outputfolder=out, filename='02-caso
     plt.savefig(path.join(outputfolder, filename))
 
 #%%
-def chart03_evolucao_casos_ativos(frame, outputfolder=out, filename='03-evolucao-casos-ativos.png'):
+def lineplot_evolucao_casos_ativos(frame, outputfolder=out, filename='03-evolucao-casos-ativos.png'):
     plt.figure()
     ax = sns.lineplot(data=frame[['ATIVOS']], legend=False)
     _ = ax.set_title("SAP COVID-19 - Evolução dos casos ativos")
@@ -80,7 +80,7 @@ def chart03_evolucao_casos_ativos(frame, outputfolder=out, filename='03-evolucao
 
 
 # %%
-def chart04_evolucao_hospitalizados(frame, outputfolder=out, filename='04-evolucao-hospitalizados.png'):
+def lineplot_evolucao_hospitalizados(frame, outputfolder=out, filename='04-evolucao-hospitalizados.png'):
     plt.figure()
     ax = sns.lineplot(data=frame[['HOSPITAL']],
                 palette="tab10",
@@ -97,7 +97,7 @@ def chart04_evolucao_hospitalizados(frame, outputfolder=out, filename='04-evoluc
 
 
 # %%
-def chart05_relacao_confirmados_recuperados(frame, outputfolder=out, filename='05-relacao-confirmados-recuperados.png'):
+def lineplot_relacao_confirmados_recuperados(frame, outputfolder=out, filename='05-relacao-confirmados-recuperados.png'):
     plt.figure()
     ax = sns.lineplot(data=frame[['CONFIRMADOS','RECUPERADOS']],
                 palette="tab10"
@@ -110,7 +110,7 @@ def chart05_relacao_confirmados_recuperados(frame, outputfolder=out, filename='0
     plt.savefig(path.join(outputfolder, filename))
 
 # %%
-def chart06_relacao_ativos_investigados(frame, outputfolder=out, filename='06-relacao-ativos-investigacao.png'):
+def lineplot_relacao_ativos_investigados(frame, outputfolder=out, filename='06-relacao-ativos-investigacao.png'):
     plt.figure()
     ax = sns.lineplot(data=frame[['ATIVOS','EM INVESTIGACAO']],
                 palette="tab10"
@@ -125,7 +125,7 @@ def chart06_relacao_ativos_investigados(frame, outputfolder=out, filename='06-re
 
 # %%
 
-def chart07_media_movel(frame, days=7, outputfolder=out, filename='07-media-movel.png'):
+def lineplot_media_movel(frame, days=7, outputfolder=out, filename='07-media-movel.png'):
     plt.figure()
     ax = frame['ATIVOS'].plot()
     ax = frame['ATIVOS'].rolling(days).mean().plot()
@@ -139,7 +139,7 @@ def chart07_media_movel(frame, days=7, outputfolder=out, filename='07-media-move
 
 # %%
 
-def chart08_evolucao_obitos(frame, outputfolder=out, filename='08-evolucao-obitos.png'):
+def lineplot_evolucao_obitos(frame, outputfolder=out, filename='08-evolucao-obitos.png'):
     fig = sns.relplot(kind="line", data=frame['OBITOS'], height=5, aspect=2)
     ax = fig.facet_axis(0,0)
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
@@ -152,7 +152,7 @@ def chart08_evolucao_obitos(frame, outputfolder=out, filename='08-evolucao-obito
 
 
 # %%
-def chart09_evolucao_obitos_mes(frame, outputfolder=out, filename='09-evolucao-obitos-por-mes.png'):
+def barplot_evolucao_obitos_mes(frame, outputfolder=out, filename='09-evolucao-obitos-por-mes.png'):
 
     deaths = frame['OBITOS_DIA']['2020-11':]
 
@@ -196,7 +196,7 @@ def chart09_evolucao_obitos_mes(frame, outputfolder=out, filename='09-evolucao-o
 
 # %%
 
-def chart10_novos_casos_recuperacoes_semanal(frame, outputfolder=out, filename='10-relacao-novos-casos-recuperados-semanal.png'):
+def barplot_novos_casos_recuperacoes_semanal(frame, outputfolder=out, filename='10-relacao-novos-casos-recuperados-semanal.png'):
     df2 = frame.resample('W-MON').sum()['2020-11':]
 
     figure, (ax1, ax2) = plt.subplots(2, 1, figsize=(15, 7), sharey=True)
@@ -227,7 +227,7 @@ def chart10_novos_casos_recuperacoes_semanal(frame, outputfolder=out, filename='
 
 # %%
 
-def chart11_taxa_testes_positivados(frame, outputfolder=out, filename='11-taxa-testes-positivados.png'):
+def lineplot_taxa_testes_positivados(frame, outputfolder=out, filename='11-taxa-testes-positivados.png'):
 
     df2 = frame['2020-11':].resample('W-MON').sum()
     df2['test_positive_rate'] = (df2['CONFIRMADOS_DIA'] / df2['EXAMINADOS_DIA']) * 100
@@ -247,7 +247,7 @@ def chart11_taxa_testes_positivados(frame, outputfolder=out, filename='11-taxa-t
 if __name__ == "__main__":
     frame = read_data(inputfile)
 
-    chart06_relacao_ativos_investigados(frame)
-    chart10_novos_casos_recuperacoes_semanal(frame)
-    chart09_evolucao_obitos_mes(frame)
-    chart05_relacao_confirmados_recuperados(frame)
+    lineplot_relacao_ativos_investigados(frame)
+    barplot_novos_casos_recuperacoes_semanal(frame)
+    barplot_evolucao_obitos_mes(frame)
+    lineplot_relacao_confirmados_recuperados(frame)
